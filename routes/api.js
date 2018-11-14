@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 const userModel = require('./../models/users.js')
 
 // Utility class
-const utilityClass = require('./../utility.js')
+const utilityClass = require('./utility.js')
 const utility = new utilityClass()
 
 router.post('/user', (req, res) => {
