@@ -2,26 +2,39 @@
 
 const express = require('express')
 const router = express.Router()
-var unirest = require('unirest')
 
 // Base endpoint
 router.get('/', (req, res) => {
-    let msg = "Welcome to corwdforce api"
+    let msg = "Welcome to projaro test api"
     res.json(msg)
 })
 
-router.get('/user', (req, res) => {
-    let endpoint = 'https://crowdforce.api-us1.com/admin/api.php?api_action=contact_add&api_output=json&api_key=d1ebaea9047f9bc5c829bc269c161d8ffc6ac4fd8da71517d8f0aae69eb5308588c1d97c'
-    let data = { email: req.query.email.slice(1, -1), 'p[123]': 1, 'status[123]': 1 }
+// Models
+const userModel = require('./model.js')
 
-    unirest.post(endpoint)
-        .headers({ 'Content-Type': 'application/x-www-form-urlencoded' })
-        .send(data)
-        .end(function (response) {
-            if(response.body.result_code == 1) {
-                res.json(200)
-            }
-        });
+// Utility class
+const utilityClass = require('./../utility.js')
+const utility = new utilityClass()
+
+router.post('/user', (req, res) => {
+    walletModel.create(data).then((record) => {
+        utility.successResponse(res, 201, "Wallet transaction successful")
+    }).catch((error) => {
+        utility.errResponse(res)
+    })
+})
+
+router.get('/user/login', (req, res) => {
+    let data = req.body
+    userModel.find({ email: data.email, password: data.password }).then((user) => {
+        if (!user.length) {
+            utility.errResponse(res, 404, "Invalid login credentials")
+        } else {
+            utility.successResponse(res, 200, user[0])
+        }
+    }).catch((err) => {
+        utility.errResponse(res)
+    })
 })
 
 module.exports = router

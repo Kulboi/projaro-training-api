@@ -1,7 +1,7 @@
 {
-  "name": "CrowdForce",
+  "name": "Projaro",
   "version": "1.0.0",
-  "description": "QUick api service",
+  "description": "Quick api service",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
@@ -13,8 +13,7 @@
     "body-parser": "latest",
     "express": "latest",
     "nodemon": "latest",
-    "request": "^2.88.0",
-    "unirest": "^0.5.1"
+    "mongoose": "latest"
   },
   "engines": {
     "node": "8.1.4",
