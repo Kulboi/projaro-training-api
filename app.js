@@ -28,7 +28,7 @@ app.use('/api', require('./routes/api'))
 
 let config = {
     hostname: '127.0.0.1',
-    port: process.env.PORT || 7000
+    port: process.env.PORT || 5000
 }
 
 app.listen(config.port, () => {

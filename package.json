@@ -10,11 +10,11 @@
   "author": "Habeeb Mac-iver",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
     "body-parser": "latest",
     "express": "latest",
     "nodemon": "latest",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "unirest": "^0.5.1"
   },
   "engines": {
     "node": "8.1.4",
