@@ -17,7 +17,7 @@ const utilityClass = require('./utility.js')
 const utility = new utilityClass()
 
 router.post('/user', (req, res) => {
-    walletModel.create(data).then((record) => {
+    userModel.create(data).then((record) => {
         utility.successResponse(res, 201, "Wallet transaction successful")
     }).catch((error) => {
         utility.errResponse(res)
