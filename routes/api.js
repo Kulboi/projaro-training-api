@@ -45,7 +45,7 @@ router.post('/user', (req, res) => {
 router.post('/user/login', (req, res) => {
     let data = req.body
     userModel
-        .find({ email: req.data.email, password: req.data.password })
+        .find({ email: data.email, password: data.password })
         .then((user) => {
             if (!user.length) {
                 utility.errResponse(res, 404, "Invalid login credentials")
