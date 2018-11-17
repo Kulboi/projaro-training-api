@@ -18,9 +18,17 @@ const utility = new utilityClass()
 
 router.post('/user', (req, res) => {
     let data = req.body
-    userModel.create(data).then((record) => {
-        utility.successResponse(res, 201, "User successfully created")
-    }).catch((error) => {
+    userModel.find({ email: data.email, password: data.password }).then((user) => {
+        if (!user.length) {
+            userModel.create(data).then((record) => {
+                utility.successResponse(res, 201, "User successfully created")
+            }).catch((error) => {
+                utility.errResponse(res)
+            })
+        } else {
+            utility.successResponse(res, 400, "User already registered, kindly login")
+        }
+    }).catch((err) => {
         utility.errResponse(res)
     })
 })
