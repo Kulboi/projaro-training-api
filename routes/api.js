@@ -33,7 +33,7 @@ router.post('/user', (req, res) => {
     })
 })
 
-router.get('/user/login', (req, res) => {
+router.post('/user/login', (req, res) => {
     let data = req.body
     userModel.find({ email: data.email, password: data.password }).then((user) => {
         if (!user.length) {
@@ -44,6 +44,24 @@ router.get('/user/login', (req, res) => {
     }).catch((err) => {
         utility.errResponse(res)
     })
+})
+
+router.get('/user', (req, res) => {
+    userModel.find({ _id: req.params.id }).then((user) => {
+        utility.successResponse(res, 200, user[0])
+    }).catch((err) => {
+        utility.errResponse(res)
+    })
+})
+
+router.put('/user', (req, res) => {
+    userModel
+        .findByIdAndUpdate({ _id: req.params.id }, req.body)
+        .then((user) => {
+            utility.successResponse(res, 200, user[0])
+        }).catch((err) => {
+            utility.errResponse(res)
+        })
 })
 
 module.exports = router
