@@ -75,7 +75,7 @@ router.get('/user/:id', (req, res) => {
     Endpoint /user (PUT)
     Purpose: Update user data
 */
-router.put('/user', (req, res) => {
+router.put('/user/:id', (req, res) => {
     userModel
         .findByIdAndUpdate({ _id: req.params.id }, req.body)
         .then((user) => {
