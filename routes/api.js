@@ -61,7 +61,7 @@ router.post('/user/login', (req, res) => {
     Endpoint /user (GET)
     Purpose: Get user credentials
 */
-router.get('/user', (req, res) => {
+router.get('/user/:id', (req, res) => {
     userModel
         .find({ _id: req.params.id })
         .then((user) => {
