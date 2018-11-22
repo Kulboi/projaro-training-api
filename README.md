@@ -1,7 +1,7 @@
 # projaro-training-api
 
 
-#### api to serve angular frontent for projaro angular training
+#### API to serve angular frontend for projaro angular training
 
 
 
