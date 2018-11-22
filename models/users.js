@@ -9,6 +9,8 @@ const userSchema = new Schema({
     phone: String,
     address: String,
     location: String,
+    dob: String,
+    marital: String,
     password: String,
     reg_at: {
         type: Date,

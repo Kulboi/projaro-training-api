@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 
 // Models
 const userModel = require('./../models/users.js')
+const postModel = require('./../models/posts.js')
 
 // Utility class
 const utilityClass = require('./utility.js')
@@ -83,6 +84,32 @@ router.put('/user/:id', (req, res) => {
         }).catch((err) => {
             utility.errResponse(res)
         })
+})
+
+/*
+    Endpoint /post (POST)
+    Purpose: Create new post
+*/
+router.post('/post', (req, res) => {
+    let data = req.body
+    postModel.create(data).then((record) => {
+        utility.successResponse(res, 201, "Post successfully created")
+    }).catch((error) => {
+        utility.errResponse(res)
+    })
+})
+
+/*
+    Endpoint /post (GET)
+    Purpose: Get all posts
+*/
+router.get('/post', (req, res) => {
+    let data = req.body
+    postModel.find({}).then((posts) => {
+        utility.successResponse(res, 200, posts)
+    }).catch((error) => {
+        utility.errResponse(res)
+    })
 })
 
 module.exports = router
